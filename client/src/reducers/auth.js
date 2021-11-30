@@ -2,10 +2,12 @@ import {
   AUTH_ERROR,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
+  LOGOUT,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
   USER_LOADED,
 } from "../actions/types";
+import setAuthToken from "../utils/setAuthToken";
 
 const initialState = {
   token: localStorage.getItem("token"),
@@ -36,7 +38,9 @@ const reducer = (state = initialState, action) => {
     case REGISTER_FAIL:
     case LOGIN_FAIL:
     case AUTH_ERROR:
+    case LOGOUT:
       localStorage.removeItem("token");
+      setAuthToken();
       return {
         ...state,
         token: null,

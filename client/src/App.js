@@ -1,15 +1,16 @@
+import { useEffect } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { loadUser } from "./actions/auth";
 import "./App.css";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import Dashboard from "./components/dashboard/Dashboard";
+import Alert from "./components/layout/Alert";
 import Landing from "./components/layout/Landing";
 import Navbar from "./components/layout/Navbar";
-import Alert from "./components/layout/Alert";
+import PrivateRoute from "./components/routing/PrivateRoute";
 import store from "./store";
-import { loadUser } from "./actions/auth";
-import { useEffect } from "react";
-import setAuthToken from "./utils/setAuthToken";
 
 const App = () => {
   useEffect(() => {
@@ -29,6 +30,7 @@ const App = () => {
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/login" element={<Login />} />
           </Routes>
+          <PrivateRoute exact path="/dashboard" element={<Dashboard />} />
         </section>
       </Router>
     </Provider>

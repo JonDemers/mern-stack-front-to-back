@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 import { login } from "../../actions/auth";
 
-export const Register = ({ login, isAuthenticated }) => {
+export const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -61,7 +61,7 @@ export const Register = ({ login, isAuthenticated }) => {
   );
 };
 
-login.propTypes = {
+Login.propTypes = {
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
 };
@@ -70,4 +70,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { login })(Register);
+export default connect(mapStateToProps, { login })(Login);
