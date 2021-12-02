@@ -3,6 +3,7 @@ import setAuthToken from "../utils/setAuthToken";
 import { setAlert } from "./alert";
 import {
   AUTH_ERROR,
+  CLEAR_PROFILE,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
   LOGOUT,
@@ -102,5 +103,6 @@ export const login = (email, password) => {
 };
 
 export const logout = () => async (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
 };

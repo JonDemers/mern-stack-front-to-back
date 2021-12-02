@@ -9,6 +9,10 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Alert from "./components/layout/Alert";
 import Landing from "./components/layout/Landing";
 import Navbar from "./components/layout/Navbar";
+import AddEducation from "./components/profile-form/AddEducation";
+import AddExperience from "./components/profile-form/AddExperience";
+import CreateProfile from "./components/profile-form/CreateProfile";
+import EditProfile from "./components/profile-form/EditProfile";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import store from "./store";
 
@@ -31,6 +35,22 @@ const App = () => {
             <Route exact path="/login" element={<Login />} />
           </Routes>
           <PrivateRoute exact path="/dashboard" element={<Dashboard />} />
+          <PrivateRoute
+            exact
+            path="/create-profile"
+            element={<CreateProfile />}
+          />
+          <PrivateRoute exact path="/edit-profile" element={<EditProfile />} />
+          <PrivateRoute
+            exact
+            path="/add-experience"
+            element={<AddExperience />}
+          />
+          <PrivateRoute
+            exact
+            path="/add-education"
+            element={<AddEducation />}
+          />
         </section>
       </Router>
     </Provider>
