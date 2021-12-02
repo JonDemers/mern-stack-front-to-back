@@ -1,4 +1,5 @@
 import {
+  ACCOUNT_DELETED,
   AUTH_ERROR,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
@@ -39,6 +40,7 @@ const reducer = (state = initialState, action) => {
     case LOGIN_FAIL:
     case AUTH_ERROR:
     case LOGOUT:
+    case ACCOUNT_DELETED:
       localStorage.removeItem("token");
       setAuthToken();
       return {
