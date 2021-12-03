@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { setAlert } from "../../actions/alert";
-import { createProfile } from "../../actions/profile";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import { createProfile } from "../../actions/profile";
 
 const CreateProfile = ({ createProfile }) => {
   const navigate = useNavigate();

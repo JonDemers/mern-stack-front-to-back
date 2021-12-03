@@ -33,7 +33,7 @@ const EditProfile = ({
     if (isAuthenticated) {
       getCurrentProfile();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, getCurrentProfile]);
 
   useEffect(() => {
     if (profile) {
@@ -42,7 +42,7 @@ const EditProfile = ({
         website: profile?.website,
         location: profile?.location,
         status: profile?.status,
-        skills: profile?.skills, // TODO join skills with comma
+        skills: profile?.skills?.join(","),
         bio: profile?.bio,
         githubUsername: profile?.githubUsername,
         youtube: profile?.social?.youtube,

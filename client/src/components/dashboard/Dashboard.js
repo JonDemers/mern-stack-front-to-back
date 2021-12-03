@@ -18,7 +18,7 @@ const Dashboard = ({
     if (isAuthenticated) {
       getCurrentProfile();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, getCurrentProfile]);
 
   return loading && profile === null ? (
     <Spinner />
