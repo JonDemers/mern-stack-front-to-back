@@ -50,8 +50,10 @@ const reducer = (state = initialState, action) => {
     case PROFILE_ERROR:
       return {
         ...state,
-        error: payload,
+        profile: null,
+        repos: [],
         loading: false,
+        error: payload,
       };
     default:
       return state;
