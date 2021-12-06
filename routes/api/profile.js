@@ -6,7 +6,6 @@ const Post = require("../../models/Post");
 const User = require("../../models/User");
 const { check, validationResult } = require("express-validator");
 const request = require("request");
-const config = require("config");
 
 router.get("/", async (req, res) => {
   try {
@@ -288,8 +287,8 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
 
 router.get("/github/:username", async (req, res) => {
   try {
-    const githubClientId = config.get("githubClientId");
-    const githubClientSecret = config.get("githubClientSecret");
+    const githubClientId = process.env.GITHUB_CLIENT_ID;
+    const githubClientSecret = process.env.GITHUB_CLIENT_SECRET;
     const options = {
       uri: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created&direction=desc&client_id=${githubClientId}&client_secret=${githubClientSecret}`,
       method: "GET",
@@ -300,6 +299,7 @@ router.get("/github/:username", async (req, res) => {
       if (error) console.error(error);
 
       if (response.statusCode !== 200) {
+        console.error("Github request failed: " + body);
         return res
           .status(404)
           .json({ errors: [{ msg: "Github profile not found" }] });

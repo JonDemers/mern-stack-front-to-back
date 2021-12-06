@@ -9,7 +9,7 @@ import {
   LOGOUT,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
-  USER_LOADED,
+  USER_LOADED
 } from "./types";
 
 export const loadUser = () => async (dispatch) => {
@@ -33,9 +33,7 @@ export const loadUser = () => async (dispatch) => {
 };
 
 export const register = ({ name, email, password }) => {
-  console.info(`register is being called: ${email}`);
   return async (dispatch) => {
-    console.info(`dispatch register is being called: ${email}`);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +42,6 @@ export const register = ({ name, email, password }) => {
     const body = JSON.stringify({ name, email, password });
     try {
       const res = await axios.post("/api/users", body, config);
-      console.info(`calling dispatch with REGISTER_SUCCESS: ${email}`);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
@@ -59,7 +56,6 @@ export const register = ({ name, email, password }) => {
         console.error(err.stack);
       }
 
-      console.info(`calling dispatch with REGISTER_FAIL: ${email}`);
       dispatch({
         type: REGISTER_FAIL,
       });
@@ -68,9 +64,7 @@ export const register = ({ name, email, password }) => {
 };
 
 export const login = (email, password) => {
-  console.info(`login is being called: ${email}`);
   return async (dispatch) => {
-    console.info(`dispatch login is being called: ${email}`);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +73,6 @@ export const login = (email, password) => {
     const body = JSON.stringify({ email, password });
     try {
       const res = await axios.post("/api/auth", body, config);
-      console.info(`calling dispatch with LOGIN_SUCCESS: ${email}`);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
@@ -94,7 +87,6 @@ export const login = (email, password) => {
         console.error(err.stack);
       }
 
-      console.info(`calling dispatch with LOGIN_FAIL: ${email}`);
       dispatch({
         type: LOGIN_FAIL,
       });

@@ -11,7 +11,6 @@ const EditProfile = ({
   getCurrentProfile,
   createProfile,
 }) => {
-  console.info("Rendering EditProfile ...");
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
