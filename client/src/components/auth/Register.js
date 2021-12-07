@@ -1,9 +1,9 @@
+import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { Link, Navigate } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
 import { register } from "../../actions/auth";
-import { Link, Navigate } from "react-router-dom";
-import PropTypes from "prop-types";
 
 export const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -43,7 +43,7 @@ export const Register = ({ setAlert, register, isAuthenticated }) => {
             type="text"
             placeholder="Name"
             name="name"
-            //required
+            required
             value={name}
             onChange={(e) => onChange(e)}
           />
@@ -53,7 +53,7 @@ export const Register = ({ setAlert, register, isAuthenticated }) => {
             type="email"
             placeholder="Email Address"
             name="email"
-            //required
+            required
             value={email}
             onChange={(e) => onChange(e)}
           />
@@ -67,8 +67,8 @@ export const Register = ({ setAlert, register, isAuthenticated }) => {
             type="password"
             placeholder="Password"
             name="password"
-            //minLength="6"
-            //required
+            minLength="6"
+            required
             value={password}
             onChange={(e) => onChange(e)}
           />
@@ -78,8 +78,8 @@ export const Register = ({ setAlert, register, isAuthenticated }) => {
             type="password"
             placeholder="Confirm Password"
             name="password2"
-            //minLength="6"
-            //required
+            minLength="6"
+            required
             value={password2}
             onChange={(e) => onChange(e)}
           />
