@@ -15,6 +15,7 @@ npm run build --prefix client
 rm -rf ./docs
 mv ./client/build docs
 
+git checkout ./docs/CNAME
 git add ./docs
 git commit -m "Deploy frontent to gh-pages"
 git push origin HEAD
