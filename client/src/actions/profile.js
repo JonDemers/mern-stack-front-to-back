@@ -12,7 +12,9 @@ import {
 
 export const getCurrentProfile = () => async (dispatch) => {
   try {
-    const res = await axios.get("/api/profile/me");
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_BASE_URL}/api/profile/me`
+    );
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
@@ -30,7 +32,9 @@ export const getCurrentProfile = () => async (dispatch) => {
 export const getProfiles = () => async (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
   try {
-    const res = await axios.get("/api/profile");
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_BASE_URL}/api/profile`
+    );
     dispatch({
       type: GET_PROFILES,
       payload: res.data,
@@ -47,7 +51,9 @@ export const getProfiles = () => async (dispatch) => {
 
 export const getProfileById = (userId) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/profile/user/${userId}`);
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_BASE_URL}/api/profile/user/${userId}`
+    );
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
@@ -64,7 +70,9 @@ export const getProfileById = (userId) => async (dispatch) => {
 
 export const getGithubRepos = (username) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/profile/github/${username}`);
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_BASE_URL}/api/profile/github/${username}`
+    );
     dispatch({
       type: GET_REPOS,
       payload: res.data,
@@ -119,7 +127,11 @@ export const createProfile =
       instagram,
     });
     try {
-      const res = await axios.post("/api/profile", body, config);
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_BASE_URL}/api/profile`,
+        body,
+        config
+      );
       dispatch({
         type: GET_PROFILE,
         payload: res.data,
@@ -153,7 +165,11 @@ export const addExperience = (formData, navigate) => async (dispatch) => {
   };
 
   try {
-    const res = await axios.put("/api/profile/experience", formData, config);
+    const res = await axios.put(
+      `${process.env.REACT_APP_API_BASE_URL}/api/profile/experience`,
+      formData,
+      config
+    );
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data,
@@ -183,7 +199,11 @@ export const addEducation = (formData, navigate) => async (dispatch) => {
   };
 
   try {
-    const res = await axios.put("/api/profile/education", formData, config);
+    const res = await axios.put(
+      `${process.env.REACT_APP_API_BASE_URL}/api/profile/education`,
+      formData,
+      config
+    );
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data,
@@ -207,7 +227,9 @@ export const addEducation = (formData, navigate) => async (dispatch) => {
 
 export const deleteExperience = (expId) => async (dispatch) => {
   try {
-    const res = await axios.delete(`/api/profile/experience/${expId}`);
+    const res = await axios.delete(
+      `${process.env.REACT_APP_API_BASE_URL}/api/profile/experience/${expId}`
+    );
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data,
@@ -230,7 +252,9 @@ export const deleteExperience = (expId) => async (dispatch) => {
 
 export const deleteEducation = (eduId) => async (dispatch) => {
   try {
-    const res = await axios.delete(`/api/profile/education/${eduId}`);
+    const res = await axios.delete(
+      `${process.env.REACT_APP_API_BASE_URL}/api/profile/education/${eduId}`
+    );
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data,
@@ -254,7 +278,7 @@ export const deleteEducation = (eduId) => async (dispatch) => {
 export const deleteAccount = (eduId) => async (dispatch) => {
   if (window.confirm("Are you sure? This can NOT be undone!")) {
     try {
-      await axios.delete("/api/profile");
+      await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/profile`);
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETED });
       dispatch(setAlert("Account deleted", "success"));
