@@ -49,25 +49,6 @@ export const getProfiles = () => async (dispatch) => {
   }
 };
 
-export const getProfileById = (userId) => async (dispatch) => {
-  try {
-    const res = await axios.get(
-      `${process.env.REACT_APP_API_BASE_URL}/api/profile/user/${userId}`
-    );
-    dispatch({
-      type: GET_PROFILE,
-      payload: res.data,
-    });
-  } catch (err) {
-    console.error(err.message);
-    console.error(err.stack);
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-  }
-};
-
 export const getGithubRepos = (username) => async (dispatch) => {
   try {
     const res = await axios.get(

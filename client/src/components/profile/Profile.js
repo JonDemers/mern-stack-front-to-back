@@ -1,9 +1,9 @@
+import axios from "axios";
 import PropTypes from "prop-types";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { getProfileById } from "../../actions/profile";
 import Spinner from "../layout/Spinner";
 import ProfileAbout from "./ProfileAbout";
 import ProfileEducation from "./ProfileEducation";
@@ -11,15 +11,27 @@ import ProfileExperience from "./ProfileExperience";
 import ProfileGithub from "./ProfileGithub";
 import ProfileTop from "./ProfileTop";
 
-const Profile = ({ profile: { profile, loading }, auth, getProfileById }) => {
+const Profile = ({ auth }) => {
   const params = useParams();
+  const [profile, setProfile] = useState(null);
 
   useEffect(() => {
-    getProfileById(params.id);
-  }, [getProfileById, params.id]);
+    const fetchProfile = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_API_BASE_URL}/api/profile/user/${params.id}`
+        );
+        setProfile(res.data);
+      } catch (err) {
+        console.error(err.message);
+        console.error(err.stack);
+      }
+    };
+    fetchProfile();
+  }, [params.id]);
   return (
     <>
-      {profile === null || loading ? (
+      {profile === null ? (
         <Spinner />
       ) : (
         <>
@@ -70,14 +82,11 @@ const Profile = ({ profile: { profile, loading }, auth, getProfileById }) => {
 };
 
 Profile.propTypes = {
-  profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
-  getProfileById: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  profile: state.profile,
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getProfileById })(Profile);
+export default connect(mapStateToProps)(Profile);
