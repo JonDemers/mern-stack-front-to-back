@@ -14,6 +14,7 @@ npm run build --prefix client
 
 rm -rf ./docs
 mv ./client/build docs
+mv ./docs/index.html ./docs/404.html
 
 git checkout ./docs/CNAME
 git add ./docs
