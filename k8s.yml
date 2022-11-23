@@ -37,3 +37,24 @@ spec:
             cpu: "100m"
           limits:
             cpu: "100m"
+        env:
+        - name: MONGO_URI
+          valueFrom:
+            secretKeyRef:
+              name: mern-stack-front-to-back-secret
+              key: MONGO_URI
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: mern-stack-front-to-back-secret
+              key: JWT_SECRET
+        - name: GITHUB_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: mern-stack-front-to-back-secret
+              key: GITHUB_CLIENT_ID
+        - name: GITHUB_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: mern-stack-front-to-back-secret
+              key: GITHUB_CLIENT_SECRET
