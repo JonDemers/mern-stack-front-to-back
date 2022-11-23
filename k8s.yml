@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mern-stack-front-to-back-service
+spec:
+  selector:
+    app: mern-stack-front-to-back
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mern-stack-front-to-back-deployment
+  labels:
+    app: mern-stack-front-to-back
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mern-stack-front-to-back
+  template:
+    metadata:
+      labels:
+        app: mern-stack-front-to-back
+    spec:
+      containers:
+      - name: mern-stack-front-to-back
+        image: "debian-cloud-test:8083/com.opcode.mern-stack-front-to-back:{{image_version}}"
+        ports:
+        - name: rest-api
+          containerPort: 5000
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "100m"
