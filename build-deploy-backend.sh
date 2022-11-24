@@ -2,7 +2,7 @@
 
 export
 
-docker build --tag com.opcode.mern-stack-front-to-back .
+docker build --no-cache --tag com.opcode.mern-stack-front-to-back .
 
 tag=latest-$(date "+%Y.%m.%d-%H.%M.%S")
 
