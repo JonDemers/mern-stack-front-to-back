@@ -7,7 +7,7 @@ pipeline {
         stage('Build and Deploy') {
             agent any
             steps {
-                sh "ls -ltrA ; ./build-deploy-backend.sh"
+                sh "./build-deploy-backend.sh"
             }
         }
     }
