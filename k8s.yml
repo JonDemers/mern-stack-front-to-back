@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: mern-stack-front-to-back
-        image: "debian-cloud-test:8083/com.opcode.mern-stack-front-to-back:{{image_version}}"
+        image: "docker-registry.k8s.lan/com.opcode.mern-stack-front-to-back:{{image_version}}"
         ports:
         - name: rest-api
           containerPort: 5000
