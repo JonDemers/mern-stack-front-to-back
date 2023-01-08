@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: mern-stack-front-to-back
-        image: "docker-registry.k8s.lan/com.opcode.mern-stack-front-to-back:{{image_version}}"
+        image: "docker-registry.k8s.lan:30501/com.opcode.mern-stack-front-to-back:{{image_version}}"
         ports:
         - name: rest-api
           containerPort: 5000
