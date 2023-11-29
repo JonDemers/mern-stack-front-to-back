@@ -21,7 +21,5 @@ git add ./docs
 git commit -m "Deploy frontent to gh-pages"
 git push origin HEAD
 
-git push heroku HEAD
-
 echo
 echo "***** Deployment succeeded *****"
